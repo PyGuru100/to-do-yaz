@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DoDoingDone</title>
+    {% include 'header.html' %}
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+{% include 'navbar.html' %}
+<!--
+<div class="center-aligned-div vertical-spacing">
+    <h1 class="base-font"> DoDoingDone ®
+    </h1>
+</div>
+-->
+<div class="center-aligned-div vertical-spacing-small">
+    <h4 class="base-font">
+        DoDoingDone ® is an online productivity tool designed to help you keep your daily tasks in order.
+    </h4>
+    {% if not current_user.is_active: %}
+    <div class="card container-fluid center-aligned-div colored-card vertical-spacing-small sized-card">
+        <div class="card-body">
+            <a href="{{url_for('login_page')}}" class="btn btn-light std-btn-width">Log In</a><br>
+            <a href="{{url_for('register')}}" class="btn btn-light vertical-spacing std-btn-width">Register</a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% include 'footer.html' %}
+</div>
+
+
+</body>
+</html>

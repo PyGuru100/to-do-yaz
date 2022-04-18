@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your DoDoingDone</title>
+    {% include 'header.html' %}
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+{% include 'navbar.html' %}
+<h1 class="base-font vertical-spacing-small">
+    DoDoingDone ®
+</h1>
+<div id="carousel-task-sets" class="carousel slide" data-ride="carousel" data-interval="false">
+    <div class="carousel-inner vertical-spacing">
+        {% for i in range(3) %}
+        <div class="{{classes[i]}}">
+            <h2 class="base-font"> {{titles[i]}} </h2>
+            {% if tasks[i] %}
+            {% for j in range((tasks[i]|length)) %}
+            <div class="card center-aligned-div colored-card vertical-spacing-small big-sized-card">
+                <div class="card-body">
+                    <p class="card-text card-font"> {{tasks[i][j]}} </p>
+                    <a href="/personal/change_tasks/{{titles[i]}}/{{j}}" class="btn btn-light">{{buttons[i]}}</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% if i == 0 %}
+            <div class="card center-aligned-div colored-card vertical-spacing-small big-sized-card">
+                <div class="card-body">
+                    <form id="task-form" method="post">
+                        <div>
+                            <label for="task" class="card-font"> <strong> Now ye shall work </strong> </label><br>
+                            <input type="text" name="task" id="task" class="form-control"><br>
+                        </div>
+                        <button type="submit" class="btn btn-light">Add Task</button>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<a class="carousel-control-prev" href="#carousel-task-sets" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next" href="#carousel-task-sets" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+</a>
+
+
+{% include 'footer.html' %}
+
+</body>
+</html>
+
+
+<!--
+        <div class="carousel-item active">
+            <h2 class="base-font"> Do: </h2>
+            {% if do %}
+            {% for task_do in do %}
+            <div class="card center-aligned-div colored-card vertical-spacing-small big-sized-card">
+                <div class="card-body">
+                    <p class="card-text card-font"> {{task_do}} </p>
+                    <a href="#" class="btn btn-light">Go somewhere</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="carousel-item">
+            <h2 class="base-font"> Doing: </h2>
+            {% if doing %}
+            {% for task_doing in doing %}
+            <div class="card center-aligned-div colored-card vertical-spacing-small big-sized-card">
+                <div class="card-body">
+                    <p class="card-text card-font">{{task_doing}}</p>
+                    <a href="#" class="btn btn-light">Go somewhere</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="carousel-item">
+            <h2 class="base-font"> Done: </h2>
+            {% if done %}
+            {% for task_done in done %}
+            <div class="card center-aligned-div colored-card vertical-spacing-small big-sized-card">
+                <div class="card-body">
+                    <p class="card-text card-font">{{task_done}}</p>
+                    <a href="#" class="btn btn-light">Go somewhere</a>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+-->
+

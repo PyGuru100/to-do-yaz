@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DoDoingDone</title>
+    {% include 'header.html' %}
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+{% include 'navbar.html' %}
+
+<div class="center-aligned-div vertical-spacing-small">
+    <h1 class="base-font"> DoDoingDone ®
+    </h1>
+</div>
+
+<div id="login" class="center-aligned-div vertical-spacing">
+    <div class="container card colored-card center-aligned-div big-sized-card">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" action="" method="post">
+                        {% if current_user.is_active %}
+                        {% if is_login %}
+                        <h2 class="text-center card-font">Log in to Different Account?</h2>
+                        {% else %}
+                        <h2 class="text-center card-font">Need Another Account?</h2>
+                        {% endif %}
+                        {% else %}
+                        {% if is_login %}
+                        <h2 class="text-center card-font">Log In</h2>
+                        {% else %}
+                        <h2 class="text-center card-font">Register</h2>
+                        {% endif %}
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="email" class="card-font">Email:</label><br>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="card-font">Password:</label><br>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        {% if not is_login %}
+                        <div class="form-group">
+                            <label for="password-con" class="card-font">Confirm Password:</label><br>
+                            <input type="password" name="password-con" id="password-con" class="form-control">
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            {% if is_login %}
+                            <input type="submit" name="submit" class="btn btn-light btn-md" value="Log In">
+                            {% else %}
+                            <input type="submit" name="submit" class="btn btn-light btn-md" value="Register">
+                            {% endif %}
+                        </div>
+                        {% if is_login %}
+                        <div id="register-link">
+                            <a href="/register" class="card-font">Register here</a>
+                        </div>
+                        {% endif %}
+
+                        {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <span class="card-font">{{ message }}</span>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+</body>
+</html>
